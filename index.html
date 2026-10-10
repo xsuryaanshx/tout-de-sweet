@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tout De Sweet — Maison de Pâtisserie · Dubai</title>
+  <meta name="description" content="An intimate French pâtisserie and salon in Wasl Square, Al Safa, Dubai. Handcrafted viennoiserie, fine entremets, and bespoke celebration commissions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0C0A08;
+      color: #E8E0D4;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { background: none; border: none; font-family: inherit; cursor: none; }
+
+    /* ── CUSTOM CURSOR ── */
+    #cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 10px; height: 10px;
+      background: #C9A96E;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, width 0.25s ease, height 0.25s ease, background 0.2s;
+      mix-blend-mode: normal;
+    }
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,169,110,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.2s;
+    }
+    body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 6px; height: 6px; background: #fff; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 56px; height: 56px; border-color: rgba(255,255,255,0.2); }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: #C9A96E;
+      color: #0C0A08;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-seg {
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+      padding-right: 28px;
+    }
+    .ticker-dot { font-size: 1rem; opacity: 0.5; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(12,10,8,0.92);
+      backdrop-filter: blur(16px);
+      padding: 18px 40px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.375rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: #E8E0D4;
+    }
+    .nav-logo span {
+      display: block;
+      font-size: 0.4375rem;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.35em;
+      color: #C9A96E;
+      margin-bottom: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(232,224,212,0.55);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #E8E0D4; }
+    .nav-cta {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #0C0A08;
+      background: #C9A96E;
+      padding: 10px 22px;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: #d4b57d; transform: translateY(-1px); }
+
+    /* hamburger */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .nav-burger span {
+      width: 22px; height: 1px;
+      background: #E8E0D4;
+      transition: transform 0.3s ease, opacity 0.2s;
+      display: block;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+
+    /* mobile drawer */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      background: #0C0A08;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 36px 60px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .mobile-drawer.open { opacity: 1; pointer-events: auto; }
+    .mobile-drawer a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(232,224,212,0.7);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: color 0.2s, transform 0.4s ease, opacity 0.4s ease;
+    }
+    .mobile-drawer.open a { transform: translateY(0); opacity: 1; }
+    .mobile-drawer.open a:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-drawer.open a:nth-child(2) { transition-delay: 0.10s; }
+    .mobile-drawer.open a:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-drawer.open a:nth-child(4) { transition-delay: 0.20s; }
+    .mobile-drawer.open a:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-drawer a:hover { color: #C9A96E; }
+    .mobile-drawer-footer {
+      margin-top: 48px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(232,224,212,0.3);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      transform: scale(1.08);
+      animation: heroScale 10s ease-out forwards;
+    }
+    @keyframes heroScale { to { transform: scale(1); } }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, #0C0A08 0%, rgba(12,10,8,0.3) 55%, transparent 100%),
+        linear-gradient(to right, rgba(12,10,8,0.6) 0%, transparent 70%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 40px 72px;
+      max-width: 1400px;
+    }
+    .hero-eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.625rem;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 9vw, 8.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #F5EFE5;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: slideUp 1s ease 0.5s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(245,239,229,0.55);
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.75s forwards;
+    }
+    .hero-sub {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: rgba(232,224,212,0.6);
+      max-width: 380px;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+    .btn-outline-gold {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      border: 1px solid rgba(201,169,110,0.4);
+      padding: 13px 28px;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-outline-gold:hover { background: rgba(201,169,110,0.08); border-color: #C9A96E; transform: translateY(-1px); }
+    .btn-solid-cream {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0C0A08;
+      background: #E8E0D4;
+      padding: 13px 28px;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-solid-cream:hover { background: #fff; transform: translateY(-1px); }
+
+    .hero-coords {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(232,224,212,0.25);
+      transform-origin: center;
+      writing-mode: vertical-lr;
+      transform: none;
+      z-index: 2;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── PHILOSOPHY STRIP ── */
+    .philosophy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100svh;
+    }
+    .philosophy-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .philosophy-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 8s ease;
+    }
+    .philosophy-image:hover img { transform: scale(1.04); }
+    .philosophy-image-label {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+    .philosophy-text {
+      background: #100E0C;
+      padding: 96px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .section-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: #C9A96E;
+    }
+    .philosophy-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #F5EFE5;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+    .philosophy-body {
+      font-size: 0.9375rem;
+      line-height: 1.9;
+      color: rgba(232,224,212,0.5);
+      font-weight: 300;
+      margin-bottom: 56px;
+      max-width: 440px;
+    }
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 40px;
+      gap: 0;
+    }
+    .metric {
+      padding-right: 24px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .metric:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+    .metric:nth-child(2) { padding-left: 24px; }
+    .metric-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: #F5EFE5;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .metric-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.7);
+    }
+
+    /* ── SPACES ── */
+    .spaces {
+      padding: 128px 40px;
+      background: #0C0A08;
+    }
+    .spaces-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 80px;
+    }
+    .spaces-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1;
+      color: #F5EFE5;
+      letter-spacing: -0.02em;
+      max-width: 480px;
+    }
+    .spaces-sub {
+      font-size: 0.875rem;
+      color: rgba(232,224,212,0.4);
+      max-width: 260px;
+      line-height: 1.7;
+      text-align: right;
+    }
+    .spaces-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .space-item {
+      background: #0C0A08;
+      padding: 48px 40px;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .space-item:hover { background: #141210; }
+    .space-n {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.5);
+      margin-bottom: 28px;
+    }
+    .space-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #F5EFE5;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .space-about {
+      font-size: 0.875rem;
+      line-height: 1.8;
+      color: rgba(232,224,212,0.45);
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+    .space-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .chip {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5375rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.6);
+      border: 1px solid rgba(201,169,110,0.18);
+      border-radius: 1px;
+      padding: 5px 10px;
+    }
+
+    /* ── MENU ── */
+    .menu-section {
+      background: #F5EFE5;
+      color: #0C0A08;
+      padding: 120px 40px;
+    }
+    .menu-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+    .menu-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .menu-tabs {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(12,10,8,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .menu-tab {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(12,10,8,0.45);
+      padding: 11px 18px;
+      border-right: 1px solid rgba(12,10,8,0.1);
+      transition: background 0.18s, color 0.18s;
+    }
+    .menu-tab:last-child { border-right: none; }
+    .menu-tab.active, .menu-tab:hover {
+      background: #0C0A08;
+      color: #F5EFE5;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid rgba(12,10,8,0.08);
+    }
+    .menu-item {
+      padding: 28px 32px 28px 0;
+      border-bottom: 1px solid rgba(12,10,8,0.08);
+      border-right: 1px solid rgba(12,10,8,0.08);
+      transition: background 0.15s;
+    }
+    .menu-item:nth-child(2n) { padding: 28px 0 28px 32px; border-right: none; }
+    .menu-item:hover { background: rgba(12,10,8,0.03); }
+    .menu-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .menu-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #0C0A08;
+      line-height: 1.25;
+    }
+    .menu-item-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: #C9A96E;
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
+    }
+    .menu-item-desc {
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      color: rgba(12,10,8,0.5);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+    .menu-item-origin {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(12,10,8,0.3);
+    }
+    .menu-note {
+      margin-top: 48px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(12,10,8,0.08);
+      font-size: 0.8125rem;
+      color: rgba(12,10,8,0.4);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .menu-note-dot { color: #C9A96E; }
+
+    /* ── COMMISSIONS ── */
+    .commissions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 90svh;
+    }
+    .commissions-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .commissions-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 8s ease;
+    }
+    .commissions-img:hover img { transform: scale(1.04); }
+    .commissions-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,10,8,0.7) 0%, transparent 60%);
+    }
+    .commissions-tag {
+      position: absolute;
+      top: 36px;
+      left: 36px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      border: 1px solid rgba(201,169,110,0.3);
+      padding: 8px 14px;
+      border-radius: 1px;
+    }
+    .commissions-text {
+      background: #141210;
+      padding: 96px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .commissions-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 3.8vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #F5EFE5;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+    .commissions-body {
+      font-size: 0.9375rem;
+      line-height: 1.85;
+      color: rgba(232,224,212,0.45);
+      font-weight: 300;
+      margin-bottom: 48px;
+      max-width: 420px;
+    }
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #E8E0D4;
+      margin-bottom: 4px;
+    }
+    .feature-desc {
+      font-size: 0.8125rem;
+      color: rgba(232,224,212,0.38);
+      line-height: 1.6;
+    }
+    .inline-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .notice {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(232,224,212,0.25);
+    }
+
+    /* ── VISIT ── */
+    .visit {
+      background: #0C0A08;
+      padding: 128px 40px;
+    }
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .visit-left {}
+    .visit-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: #F5EFE5;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 48px;
+    }
+    .info-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .info-table tr:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+    .info-table td {
+      padding: 18px 0;
+      vertical-align: top;
+    }
+    .info-table td:first-child {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.6);
+      width: 110px;
+      padding-right: 24px;
+      padding-top: 20px;
+    }
+    .info-table td:last-child {
+      font-size: 0.875rem;
+      color: rgba(232,224,212,0.55);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .visit-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .visit-right {}
+    .rhythm-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      color: rgba(245,239,229,0.6);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .rhythm {
+      display: flex;
+      flex-direction: column;
+    }
+    .rhythm-row {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .rhythm-t {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      color: #C9A96E;
+      padding-top: 3px;
+    }
+    .rhythm-name {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: rgba(245,239,229,0.7);
+      margin-bottom: 4px;
+    }
+    .rhythm-desc {
+      font-size: 0.8125rem;
+      color: rgba(232,224,212,0.35);
+      line-height: 1.6;
+    }
+    .pull-quote {
+      margin-top: 40px;
+      padding: 28px;
+      border-left: 1px solid rgba(201,169,110,0.3);
+    }
+    .pull-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(245,239,229,0.5);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .pull-quote cite {
+      font-family: 'Space Grotesk', sans-serif;
+      font-style: normal;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070604;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 80px 40px 40px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 72px;
+    }
+    .footer-brand {}
+    .footer-logo-sub {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.4375rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.6);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .footer-logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: rgba(245,239,229,0.8);
+      display: block;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .footer-motto {
+      font-size: 0.8125rem;
+      color: rgba(232,224,212,0.22);
+      line-height: 1.75;
+      max-width: 280px;
+    }
+    .footer-col-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.5);
+      display: block;
+      margin-bottom: 22px;
+    }
+    .footer-col a, .footer-col p {
+      display: block;
+      font-size: 0.8125rem;
+      color: rgba(232,224,212,0.28);
+      margin-bottom: 10px;
+      line-height: 1.6;
+      transition: color 0.18s;
+    }
+    .footer-col a:hover { color: rgba(232,224,212,0.75); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(232,224,212,0.15);
+    }
+
+    /* ── FLOAT WA ── */
+    .wa-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 80;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px 14px 18px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 30px rgba(37,211,102,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s both;
+    }
+    .wa-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.4); }
+    .wa-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.6) translateY(10px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Mobile bottom bar */
+    .mob-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 80;
+      background: rgba(10,8,6,0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+      gap: 10px;
+    }
+    .mob-bar a {
+      flex: 1;
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px;
+      border-radius: 2px;
+    }
+    .mob-bar .a1 { background: #C9A96E; color: #0C0A08; }
+    .mob-bar .a2 { border: 1px solid rgba(255,255,255,0.12); color: rgba(232,224,212,0.7); }
+
+    /* ── SCROLL REVEAL ── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-reveal].in { opacity: 1; transform: none; }
+    [data-reveal-delay="1"] { transition-delay: 0.1s; }
+    [data-reveal-delay="2"] { transition-delay: 0.2s; }
+    [data-reveal-delay="3"] { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .philosophy, .commissions { grid-template-columns: 1fr; }
+      .philosophy-image { height: 50svh; }
+      .philosophy-text { padding: 72px 48px; }
+      .commissions-img { height: 55svh; }
+      .commissions-text { padding: 72px 48px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      nav { padding: 22px 28px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .hero-content { padding: 0 24px 80px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-actions { flex-direction: row; align-items: flex-start; }
+      .spaces { padding: 80px 24px; }
+      .spaces-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .spaces-sub { text-align: left; }
+      .spaces-list { grid-template-columns: 1fr; }
+      .menu-section { padding: 80px 24px; }
+      .menu-header { flex-direction: column; align-items: flex-start; gap: 28px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-item:nth-child(2n) { padding: 28px 0; border-right: none; }
+      .menu-item { padding: 28px 0; }
+      .visit { padding: 80px 24px; }
+      .visit-grid { grid-template-columns: 1fr; gap: 56px; }
+      footer { padding: 64px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .wa-btn { display: none; }
+      .mob-bar { display: flex; }
+      body { padding-bottom: 72px; }
+      .metrics-row { grid-template-columns: 1fr; gap: 24px; border-top: none; }
+      .metric { border-right: none; padding: 0; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; }
+      .metric:first-child { margin-top: 40px; }
+      .philosophy-text { padding: 56px 28px; }
+      .commissions-text { padding: 56px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-seg">
+      <span>Wasl Square · Al Safa 1 · Dubai</span>
+      <span class="ticker-dot">✦</span>
+      <span>Maison de Pâtisserie Française</span>
+      <span class="ticker-dot">✦</span>
+      <span>Daily 07:30 — 23:00</span>
+      <span class="ticker-dot">✦</span>
+      <span>84-Layer AOP Lamination</span>
+      <span class="ticker-dot">✦</span>
+      <span>Valrhona Grand Cru</span>
+      <span class="ticker-dot">✦</span>
+      <span>Private Commissions Accepted</span>
+      <span class="ticker-dot">✦</span>
+    </span>
+    <span class="ticker-seg" aria-hidden="true">
+      <span>Wasl Square · Al Safa 1 · Dubai</span>
+      <span class="ticker-dot">✦</span>
+      <span>Maison de Pâtisserie Française</span>
+      <span class="ticker-dot">✦</span>
+      <span>Daily 07:30 — 23:00</span>
+      <span class="ticker-dot">✦</span>
+      <span>84-Layer AOP Lamination</span>
+      <span class="ticker-dot">✦</span>
+      <span>Valrhona Grand Cru</span>
+      <span class="ticker-dot">✦</span>
+      <span>Private Commissions Accepted</span>
+      <span class="ticker-dot">✦</span>
+    </span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo" aria-label="Tout De Sweet Home">
+    <span>MAISON DE PÂTISSERIE</span>
+    TOUT DE SWEET
+  </a>
+  <div class="nav-links">
+    <a href="#maison">La Maison</a>
+    <a href="#espaces">Les Espaces</a>
+    <a href="#carte">La Carte</a>
+    <a href="#commissions">Commissions</a>
+    <a href="#visit">Visit</a>
+  </div>
+  <a href="https://wa.me/971501234567?text=Bonjour%20Tout%20De%20Sweet,%20I%20would%20like%20to%20make%20a%20reservation."
+     target="_blank" rel="noopener"
+     class="nav-cta"
+     id="navDesktopCTA">
+    Reserve a Table
+  </a>
+  <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#maison"      id="mlink1">La Maison</a>
+  <a href="#espaces"     id="mlink2">Les Espaces</a>
+  <a href="#carte"       id="mlink3">La Carte</a>
+  <a href="#commissions" id="mlink4">Private Commissions</a>
+  <a href="#visit"       id="mlink5">Visit &amp; Location</a>
+  <div class="mobile-drawer-footer">Wasl Square · Al Safa 1, Jumeirah, Dubai &nbsp;·&nbsp; 07:30 — 23:00</div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <img src="images/hero.jpg"
+       alt="French pastry table at Tout De Sweet, Wasl Square Dubai"
+       class="hero-img">
+  <div class="hero-overlay"></div>
+  <p class="hero-coords">25.1854° N, 55.2390° E</p>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ &nbsp; Haute Pâtisserie &amp; Boulangerie · Wasl Square</p>
+    <h1 class="hero-title">
+      An intimate<br>
+      Parisian sanctuary<br>
+      <em>in Jumeirah.</em>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        Where slow French craftsmanship and 84-layer AOP lamination converge
+        — crafted daily for those who value provenance over haste.
+      </p>
+      <div class="hero-actions">
+        <a href="#carte" class="btn-solid-cream" id="heroMenuBtn">Explore La Carte</a>
+        <a href="#commissions" class="btn-outline-gold" id="heroCommBtn">Private Commissions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy" id="maison">
+  <div class="philosophy-image">
+    <img src="images/pastries.jpg" alt="Artisanal pastries at Tout De Sweet">
+    <span class="philosophy-image-label">L'Atelier · Wasl Square</span>
+  </div>
+  <div class="philosophy-text">
+    <p class="section-tag">PHILOSOPHIE &amp; PROVENANCE</p>
+    <h2 class="philosophy-heading" data-reveal>
+      Born from French Rigor,<br>Rooted in Dubai's<br>Quiet Sanctuaries.
+    </h2>
+    <p class="philosophy-body" data-reveal data-reveal-delay="1">
+      Tout De Sweet was conceived not as an ordinary bakery, but as a dedicated atelier —
+      an architectural tribute to the grand pastry salons of Paris, nestled within the
+      quiet residential courtyards of Al Safa. We work exclusively with single-origin
+      Grand Cru cacao from Valrhona, cultured butter from the Charentes-Poitou region,
+      and heritage flours stone-milled in France.
+    </p>
+    <div class="metrics-row" data-reveal data-reveal-delay="2">
+      <div class="metric">
+        <div class="metric-num">84</div>
+        <div class="metric-label">Laminated Folds</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">36h</div>
+        <div class="metric-label">Cold Fermentation</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">AOP</div>
+        <div class="metric-label">Normandy Butter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Spaces -->
+<section class="spaces" id="espaces">
+  <div class="spaces-header" data-reveal>
+    <h2 class="spaces-title">The Spaces<br>of Wasl Square</h2>
+    <p class="spaces-sub">Three distinct atmospheres within one unhurried retreat from the city's pulse.</p>
+  </div>
+  <div class="spaces-list">
+    <div class="space-item" data-reveal>
+      <div class="space-n">01 / LE SALON</div>
+      <h3 class="space-name">Le Salon Intérieur</h3>
+      <p class="space-about">Textured lime-washed plaster walls, curved honed marble counters, and plush linen seating — a quiet haven for morning espresso, solitary reading, and confidential rendezvous.</p>
+      <div class="space-chips">
+        <span class="chip">Natural Light</span>
+        <span class="chip">Travertine</span>
+        <span class="chip">Ambient Acoustics</span>
+      </div>
+    </div>
+    <div class="space-item" data-reveal data-reveal-delay="1">
+      <div class="space-n">02 / LA TERRASSE</div>
+      <h3 class="space-name">La Terrasse du Jardin</h3>
+      <p class="space-about">Shaded alfresco dining beneath Wasl Square's olive foliage. Cool morning breezes, gentle courtyard fountains, and the scent of freshly pulled viennoiseries in the Al Safa air.</p>
+      <div class="space-chips">
+        <span class="chip">Courtyard Garden</span>
+        <span class="chip">Pet-Friendly</span>
+        <span class="chip">Open 07:30</span>
+      </div>
+    </div>
+    <div class="space-item" data-reveal data-reveal-delay="2">
+      <div class="space-n">03 / L'ATELIER</div>
+      <h3 class="space-name">L'Atelier Vitré</h3>
+      <p class="space-about">An open architectural glass partition where guests observe the delicate discipline of tempering chocolate, piping choux, and hand-sculpting seasonal fruit entremets live.</p>
+      <div class="space-chips">
+        <span class="chip">Live Craftsmanship</span>
+        <span class="chip">Valrhona Studio</span>
+        <span class="chip">Cake Consultations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Menu -->
+<section class="menu-section" id="carte">
+  <div class="menu-header" data-reveal>
+    <h2 class="menu-title">La Carte</h2>
+    <div class="menu-tabs" id="menuTabs" role="tablist">
+      <button class="menu-tab active" data-tab="viennoiserie" role="tab">Viennoiserie</button>
+      <button class="menu-tab" data-tab="entremets"    role="tab">Pâtisserie</button>
+      <button class="menu-tab" data-tab="tartes"       role="tab">Tartes</button>
+      <button class="menu-tab" data-tab="cafe"         role="tab">Café</button>
+    </div>
+  </div>
+  <div class="menu-grid" id="menuGrid" role="tabpanel"></div>
+  <div class="menu-note">
+    <span class="menu-note-dot">✦</span>
+    All items crafted with non-hydrogenated Normandy AOP butter and unbleached French flours.
+    For dietary inquiries, please consult our Concierge Desk.
+  </div>
+</section>
+
+<!-- Commissions -->
+<section class="commissions" id="commissions">
+  <div class="commissions-img">
+    <img src="images/cake.jpg" alt="Bespoke celebration cake by Tout De Sweet Dubai">
+    <div class="commissions-overlay"></div>
+    <div class="commissions-tag">SUR-MESURE</div>
+  </div>
+  <div class="commissions-text">
+    <p class="section-tag">HAUTE PÂTISSERIE SUR-MESURE</p>
+    <h2 class="commissions-heading" data-reveal>
+      Private<br>Commissions &amp;<br>Bespoke Centerpieces
+    </h2>
+    <p class="commissions-body" data-reveal data-reveal-delay="1">
+      For milestones celebrated in Dubai's premier residences — from private estates in Emirates Hills
+      to waterfront villas on the Palm — our atelier creates bespoke celebration tiers designed as edible architecture.
+    </p>
+    <div class="features-list" data-reveal data-reveal-delay="2">
+      <div class="feature">
+        <div class="feature-icon">🫐</div>
+        <div>
+          <div class="feature-title">Artisanal Flavor Profiles</div>
+          <div class="feature-desc">Madagascar Bourbon vanilla, Bronte pistachio, salted Isigny caramel, and Valrhona Grand Cru ganache.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏛️</div>
+        <div>
+          <div class="feature-title">Architectural Sculpting</div>
+          <div class="feature-desc">Textured ivory buttercream, sugar ribbons, edible figs, and hand-applied 24-karat French gold leaf.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚗</div>
+        <div>
+          <div class="feature-title">White-Glove Delivery</div>
+          <div class="feature-desc">Climate-controlled private transport with on-site chef assembly upon request.</div>
+        </div>
+      </div>
+    </div>
+    <div class="inline-actions">
+      <a href="https://wa.me/971501234567?text=Bonjour%20Tout%20De%20Sweet,%20I%20am%20inquiring%20about%20a%20private%20bespoke%20commission."
+         target="_blank" rel="noopener"
+         class="btn-outline-gold"
+         id="commCTABtn">
+        Inquire via WhatsApp
+      </a>
+      <span class="notice">48–72h advance notice required</span>
+    </div>
+  </div>
+</section>
+
+<!-- Visit -->
+<section class="visit" id="visit">
+  <div class="visit-grid">
+    <div class="visit-left" data-reveal>
+      <h2 class="visit-heading">Visit<br>Wasl Square</h2>
+      <table class="info-table">
+        <tr>
+          <td>Adresse</td>
+          <td>Wasl Square, Building 5, Ground Floor<br>Al Safa 1, Jumeirah, Dubai, UAE</td>
+        </tr>
+        <tr>
+          <td>Horaires</td>
+          <td>Monday through Sunday<br>07:30 — 23:00 Daily</td>
+        </tr>
+        <tr>
+          <td>Parking</td>
+          <td>Dedicated Wasl Square courtyard parking &amp; complimentary valet drop-off.</td>
+        </tr>
+        <tr>
+          <td>Concierge</td>
+          <td>+971 4 388 9000 &nbsp;·&nbsp; bonjour@toutdesweet.ae</td>
+        </tr>
+      </table>
+      <div class="visit-btns">
+        <a href="https://maps.app.goo.gl/46M7RsaSGEDkzgN87"
+           target="_blank" rel="noopener"
+           class="btn-solid-cream"
+           id="mapsBtn">Open in Maps</a>
+        <a href="https://wa.me/971501234567?text=Bonjour%20Tout%20De%20Sweet,%20I%20would%20like%20to%20reserve%20a%20table."
+           target="_blank" rel="noopener"
+           class="btn-outline-gold"
+           id="reserveBtn">Reserve a Table</a>
+      </div>
+    </div>
+    <div class="visit-right" data-reveal data-reveal-delay="2">
+      <h3 class="rhythm-header">The Daily Rhythm</h3>
+      <div class="rhythm">
+        <div class="rhythm-row">
+          <span class="rhythm-t">07:30</span>
+          <div>
+            <div class="rhythm-name">Premier Fournil</div>
+            <div class="rhythm-desc">First emergence of warm croissants, pain au chocolat, and cardamom morning buns.</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-t">11:00</span>
+          <div>
+            <div class="rhythm-name">Vitrines de Pâtisserie Fine</div>
+            <div class="rhythm-desc">Daily reveal of glossy entremets, fresh berry tarts, and Tahitian vanilla mille-feuille.</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-t">15:30</span>
+          <div>
+            <div class="rhythm-name">L'Heure du Thé</div>
+            <div class="rhythm-desc">Afternoon salon service with single-origin teas, pour-overs, and warm madeleines baked à la minute.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pull-quote">
+        <p>"A discreet temple of French baking discipline, where time pauses and sweetness is treated with architectural reverence."</p>
+        <cite>— Culinary Note, Dubai</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo-sub">MAISON DE PÂTISSERIE</span>
+      <span class="footer-logo-main">TOUT DE SWEET</span>
+      <p class="footer-motto">Preserving French artisanal heritage and confectionery discipline for Dubai's most discerning palates.</p>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-label">Navigation</span>
+      <a href="#maison">La Maison</a>
+      <a href="#espaces">Les Espaces</a>
+      <a href="#carte">La Carte</a>
+      <a href="#commissions">Commissions</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-label">Lieu</span>
+      <p>Wasl Square, Building 5</p>
+      <p>Al Safa 1, Jumeirah</p>
+      <p>Dubai, UAE</p>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-label">Concierge</span>
+      <p>+971 4 388 9000</p>
+      <a href="https://instagram.com/toutdesweett" target="_blank" rel="noopener">@toutdesweett</a>
+      <a href="mailto:bonjour@toutdesweet.ae">bonjour@toutdesweet.ae</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Tout De Sweet Maison de Pâtisserie. All Rights Reserved.</span>
+    <span>25.1854° N, 55.2390° E</span>
+  </div>
+</footer>
+
+<!-- Floating WA -->
+<a href="https://wa.me/971501234567?text=Bonjour%20Tout%20De%20Sweet,%20I%20would%20like%20to%20inquire."
+   target="_blank" rel="noopener"
+   class="wa-btn"
+   id="waFloat">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+  Concierge Desk
+</a>
+
+<!-- Mobile bottom bar -->
+<div class="mob-bar" id="mobBar">
+  <a href="#carte" class="a1" id="mobMenuBtn">La Carte</a>
+  <a href="https://wa.me/971501234567?text=Bonjour%20Tout%20De%20Sweet,%20I%20would%20like%20to%20reserve%20a%20table."
+     target="_blank" rel="noopener" class="a2" id="mobReserveBtn">Reserve a Table</a>
+</div>
+
+<script>
+  // ── Custom Cursor ──
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let rx = 0, ry = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    cur.style.left  = cx + 'px';
+    cur.style.top   = cy + 'px';
+  });
+  (function animRing() {
+    rx += (cx - rx) * 0.12;
+    ry += (cy - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+
+  // ── Nav scroll ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Mobile nav ──
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('mobileDrawer');
+  const drawerLinks = drawer.querySelectorAll('a');
+  let open = false;
+  function toggleMenu() {
+    open = !open;
+    burger.classList.toggle('open', open);
+    drawer.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', toggleMenu);
+  drawerLinks.forEach(l => l.addEventListener('click', () => { if (open) toggleMenu(); }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) toggleMenu(); });
+
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('[data-reveal]');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const d = parseInt(e.target.dataset.revealDelay || '0');
+        setTimeout(() => e.target.classList.add('in'), d * 100);
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => ro.observe(el));
+
+  // ── Menu data + render ──
+  const MENU = {
+    viennoiserie: [
+      { name:"Croissant au Beurre d'Isigny AOP", price:"AED 22", desc:"Eighty-four laminated layers of cultured Normandy butter. Crisp caramelized honeycomb exterior, tender aromatic crumb.", origin:"Normandy AOP Charentes-Poitou · 36h Fermentation" },
+      { name:"Pain au Chocolat Grand Cru", price:"AED 26", desc:"Double batons of Valrhona 66% Caraïbe dark chocolate encased in feather-light golden feuilletage.", origin:"Valrhona Caraïbe Cacao · Pure French Butter" },
+      { name:"Kouign-Amann de Bretagne", price:"AED 28", desc:"Traditional Breton slow-caramelized pastry with crystallized sea salt sugar shards and a melting butter core.", origin:"Brittany Demisel Butter · Guérande Salt" },
+      { name:"Feuilleté Amande & Fleur d'Oranger", price:"AED 30", desc:"Double-baked croissant filled with almond frangipane, toasted Marcona flakes, and Moroccan orange blossom.", origin:"Valencia Almonds · Bitter Almond Glaze" },
+      { name:"Pain Suisse Pâtissier", price:"AED 29", desc:"Twisted brioche laminated dough filled with Tahitian vanilla pastry cream and Valrhona Guanaja pearls.", origin:"Bourbon Vanilla · Valrhona Pearls" },
+      { name:"Chausson aux Pommes Rôties", price:"AED 27", desc:"Inverted puff pastry with slow-roasted Golden Delicious apple compote infused with Ceylon cinnamon.", origin:"French Golden Apples · Madagascar Cinnamon" },
+    ],
+    entremets: [
+      { name:"Le Praliné Noisette du Piémont", price:"AED 48", desc:"Light Piedmont hazelnut mousse, roasted Gianduja insert, crispy feuilletine wafer, dark mirror glaze with 24k gold leaf.", origin:"IGP Piedmont Hazelnut · Valrhona Jivara 40%" },
+      { name:"Mille-Feuille Vanille de Tahiti", price:"AED 46", desc:"Three caramelized layers of inverse puff pastry piped with intense Tahitian vanilla bean mousseline cream.", origin:"Tahitian Vanilla Pods · Caramelized Feuilletage" },
+      { name:"Dôme Sculpté Pistache Fleur de Sel", price:"AED 52", desc:"Velvety pistachio mousse, Bronte pistachio praliné crunch center, and almond dacquoise base.", origin:"Bronte Pistachios · White Chocolate Mousse" },
+      { name:"Tartelette Guanaja 70% Intense", price:"AED 45", desc:"Dark cocoa sablé tartlet, molten Guanaja ganache, cocoa nib crunch, and dark chocolate crescent.", origin:"Valrhona Guanaja 70% · Fleur de Sel" },
+      { name:"Pavlova Légère aux Baies Sauvages", price:"AED 44", desc:"Crisp French meringue shell, whipped mascarpone cream, fresh raspberries and wild blueberries.", origin:"Organic Forest Berries · Vanilla Chantilly" },
+      { name:"Saint-Honoré Traditionnel", price:"AED 49", desc:"Caramelized puff pastry base, crisp choux filled with Madagascar vanilla diplomat, piped Chiboust cream.", origin:"Madagascar Vanilla · Crunchy Hard Caramel" },
+    ],
+    tartes: [
+      { name:"Tartelette Framboise & Crème d'Amande", price:"AED 44", desc:"Crisp sweet pastry shell, baked almond frangipane, raspberry reduction, and fresh heritage raspberries.", origin:"Fresh Heritage Berries · French Sweet Almond" },
+      { name:"Tarte au Citron d'Amalfi Meringuée", price:"AED 42", desc:"Silky Amalfi lemon curd with balanced citrus brightness, topped with hand-torched French meringue peaks.", origin:"Amalfi Coast Lemons · Torched Meringue" },
+      { name:"Tartelette Noix de Pécan & Caramel Salé", price:"AED 46", desc:"Sweet sablé dough, roasted Louisiana pecans, rich salted Isigny caramel, and Maldon salt flakes.", origin:"Isigny Ste Mère Caramel · Roasted Pecans" },
+      { name:"Tarte Fine aux Figues Rôties", price:"AED 45", desc:"Paper-thin caramelized puff pastry, honey-glazed French black figs, and light goat cheese cremeux.", origin:"Solliès Black Figs · Provençal Honey" },
+    ],
+    cafe: [
+      { name:"Panama Boquete Gesha V60", price:"AED 45", desc:"Single-estate high-altitude Gesha brewed via V60. Delicate floral jasmine aromatics, bergamot, white peach.", origin:"Panama Boquete Highlands · Washed Process" },
+      { name:"Espresso Double Ristretto", price:"AED 24", desc:"Short extraction of our signature micro-lot Colombian. Notes of dark chocolate, toasted hazelnut, dried plum.", origin:"Antioquia, Colombia · Medium-Dark Roast" },
+      { name:"Velvet Flat White", price:"AED 28", desc:"Double ristretto with textured micro-foamed organic whole milk or oat milk in handmade ceramic pottery.", origin:"House Espresso · Organic Micro-Foam" },
+      { name:"Thé Vert Jasmin Impérial", price:"AED 32", desc:"Rare spring harvest green tea scented with midnight jasmine blossoms in Fujian. Subtle, sweet, transcendent.", origin:"Fujian Single-Harvest · Rare Tea Cellar" },
+    ]
+  };
+
+  function renderMenu(cat) {
+    const grid = document.getElementById('menuGrid');
+    grid.style.opacity = '0';
+    setTimeout(() => {
+      grid.innerHTML = MENU[cat].map(item => `
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">${item.name}</span>
+            <span class="menu-item-price">${item.price}</span>
+          </div>
+          <p class="menu-item-desc">${item.desc}</p>
+          <span class="menu-item-origin">${item.origin}</span>
+        </div>
+      `).join('');
+      grid.style.transition = 'opacity 300ms ease';
+      grid.style.opacity = '1';
+    }, 150);
+  }
+
+  document.querySelectorAll('.menu-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMenu(btn.dataset.tab);
+    });
+  });
+  renderMenu('viennoiserie');
+</script>
+</body>
+</html>
