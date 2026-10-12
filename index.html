@@ -505,6 +505,609 @@
       padding: 5px 10px;
     }
 
+    /* ── L'ATELIER INTERACTIVE SHOWCASE ── */
+    .atelier-showcase-section {
+      background: #0C0A08;
+      color: #E8E0D4;
+      padding: 120px 40px 140px;
+      position: relative;
+      overflow: hidden;
+    }
+    .atelier-showcase-section::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .atelier-header {
+      max-width: 900px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+    .atelier-eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .atelier-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5.2vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #FAF7F0;
+      margin-bottom: 18px;
+    }
+    .atelier-title em {
+      font-style: italic;
+      color: #C9A96E;
+    }
+    .atelier-subtitle {
+      font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+      color: rgba(232, 224, 212, 0.65);
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── SHOWCASE DEVICE / CANVAS ── */
+    .atelier-canvas-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .atelier-canvas {
+      position: relative;
+      width: 100%;
+      height: 720px;
+      max-height: 82vh;
+      min-height: 560px;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #14170E;
+      box-shadow: 0 35px 90px rgba(0,0,0,0.85), 0 0 0 1px rgba(201,169,110,0.25), inset 0 0 80px rgba(0,0,0,0.5);
+      user-select: none;
+      touch-action: pan-y;
+    }
+
+    /* Top Navigation Floating Capsule */
+    .atelier-topbar {
+      position: absolute;
+      top: 24px; left: 28px; right: 28px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .atelier-brand-badge {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .atelier-brand-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.08em;
+      color: #FAF7F0;
+      font-weight: 400;
+    }
+    .atelier-brand-sub {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      padding-left: 10px;
+      border-left: 1px solid rgba(201,169,110,0.3);
+    }
+    .atelier-capsule-island {
+      pointer-events: auto;
+      background: rgba(16, 20, 14, 0.84);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,169,110,0.28);
+      border-radius: 40px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .island-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(232, 224, 212, 0.7);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+      cursor: none;
+    }
+    .island-btn:hover {
+      background: rgba(201,169,110,0.18);
+      color: #FAF7F0;
+      transform: scale(1.06);
+    }
+    .island-btn.active {
+      background: #C9A96E;
+      color: #0C0A08;
+    }
+    .island-btn.bag-btn {
+      width: auto;
+      padding: 0 14px;
+      border-radius: 20px;
+      background: #1c2317;
+      border: 1px solid rgba(201,169,110,0.35);
+      color: #C9A96E;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      gap: 7px;
+    }
+    .island-btn.bag-btn:hover {
+      background: #C9A96E;
+      color: #0C0A08;
+    }
+    .bag-count {
+      background: #C9A96E;
+      color: #0C0A08;
+      font-size: 0.625rem;
+      font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1.4);
+    }
+    .island-btn.bag-btn:hover .bag-count {
+      background: #0C0A08;
+      color: #C9A96E;
+    }
+    .atelier-location-pill {
+      pointer-events: auto;
+      background: rgba(16, 20, 14, 0.84);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,169,110,0.28);
+      border-radius: 40px;
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #E8E0D4;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .atelier-location-pill:hover {
+      border-color: #C9A96E;
+      background: rgba(201,169,110,0.15);
+    }
+
+    /* Backdrop Scene (The organic powder mountain & studio lighting) */
+    .atelier-backdrop {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .atelier-ambient-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(201,169,110,0.06) 0%, transparent 65%),
+                  linear-gradient(to bottom, rgba(12,10,8,0.45) 0%, transparent 28%, rgba(12,10,8,0.7) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* The Parabolic Curved Arc of Floating Ingredient Cards */
+    .atelier-arc-container {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 420px;
+      z-index: 3;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ingredient-card {
+      pointer-events: auto;
+      position: absolute;
+      width: 145px;
+      height: 145px;
+      border-radius: 32px;
+      background: #FAF7F0;
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.48), 0 4px 12px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      transform-origin: center center;
+    }
+    .ingredient-card:hover {
+      box-shadow: 0 26px 54px rgba(0, 0, 0, 0.6), 0 0 0 2px #C9A96E;
+    }
+    .ingredient-card.active {
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65), 0 0 0 3px #C9A96E, 0 0 24px rgba(201,169,110,0.4);
+      border-color: #C9A96E;
+    }
+    .ingredient-card img {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+      pointer-events: none;
+      transition: transform 0.4s ease;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
+    }
+    .ingredient-card:hover img {
+      transform: scale(1.08) translateY(-3px);
+    }
+
+    /* Central Artisan Drink Stack (resting on the mountain peak) */
+    .atelier-hero-cup-stage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      height: 535px;
+      z-index: 6;
+      pointer-events: none;
+    }
+    .atelier-cup-layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transform: scale(0.96) translateY(6px);
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      pointer-events: none;
+      filter: drop-shadow(0 15px 35px rgba(0,0,0,0.6));
+    }
+    .atelier-cup-layer.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      z-index: 2;
+    }
+
+    /* Title overlayed across the cup */
+    .atelier-cup-title {
+      position: absolute;
+      top: 67%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      font-style: italic;
+      font-weight: 400;
+      color: #FAF7F0;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.9);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.4s ease;
+    }
+
+    /* Floating Price Pill Tag (at the base of the cup) */
+    .atelier-price-badge {
+      pointer-events: auto;
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+      background: #FAF7F0;
+      color: #0C0A08;
+      border-radius: 20px;
+      padding: 9px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+      border: 1px solid rgba(201,169,110,0.3);
+      cursor: none;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+    .atelier-price-badge:hover {
+      transform: translateX(-50%) translateY(-3px) scale(1.05);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.55), 0 0 20px rgba(201,169,110,0.35);
+      background: #FFFFFF;
+    }
+    .atelier-price-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #0C0A08;
+    }
+    .atelier-price-cart-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0C0A08;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    .atelier-price-badge:hover .atelier-price-cart-icon {
+      transform: translateY(-1px) scale(1.15);
+      color: #C9A96E;
+    }
+
+    /* Bottom Display Headline */
+    .atelier-bottom-headline {
+      position: absolute;
+      bottom: 20px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5.8vw, 5.6rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #FAF7F0;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.75);
+      pointer-events: none;
+      z-index: 4;
+    }
+    .atelier-bottom-headline span {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* Left & Right Navigation Arrows */
+    .atelier-nav-arrow {
+      pointer-events: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(16, 20, 14, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,110,0.3);
+      color: #E8E0D4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      cursor: none;
+      transition: all 0.22s ease;
+    }
+    .atelier-nav-arrow:hover {
+      background: #C9A96E;
+      color: #0C0A08;
+      border-color: #C9A96E;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .atelier-nav-prev { left: 24px; }
+    .atelier-nav-next { right: 24px; }
+
+    /* Interactive Details & Customization Bar below canvas */
+    .atelier-details-deck {
+      max-width: 1240px;
+      margin: 36px auto 0;
+      background: #14110E;
+      border: 1px solid rgba(201,169,110,0.22);
+      border-radius: 20px;
+      padding: 32px 40px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr 0.95fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+    .deck-info-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      font-weight: 400;
+      color: #FAF7F0;
+      margin-bottom: 6px;
+    }
+    .deck-info-origin {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-bottom: 8px;
+    }
+    .deck-info-desc {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: rgba(232,224,212,0.65);
+    }
+    .deck-select-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .deck-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(232,224,212,0.5);
+    }
+    .deck-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .deck-pill {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 7px 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(201,169,110,0.22);
+      color: rgba(232,224,212,0.7);
+      background: transparent;
+      cursor: none;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .deck-pill .pill-extra {
+      opacity: 0.7;
+      font-size: 0.5625rem;
+    }
+    .deck-pill:hover, .deck-pill.active {
+      background: #C9A96E;
+      color: #0C0A08;
+      border-color: #C9A96E;
+      font-weight: 600;
+    }
+    .deck-pill.active .pill-extra {
+      opacity: 0.95;
+      color: #0C0A08;
+    }
+    .deck-message-container {
+      display: none;
+      grid-column: 1 / -1;
+      animation: fadeInDeck 0.25s ease forwards;
+    }
+    .deck-message-container.show {
+      display: block;
+    }
+    .deck-message-input {
+      width: 100%;
+      background: rgba(12, 10, 8, 0.7);
+      border: 1px solid rgba(201, 169, 110, 0.35);
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      color: #FAF7F0;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .deck-message-input:focus {
+      border-color: #C9A96E;
+      box-shadow: 0 0 14px rgba(201, 169, 110, 0.25);
+    }
+    @keyframes fadeInDeck {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .deck-cta-btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0C0A08;
+      background: #C9A96E;
+      padding: 16px 28px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+      cursor: none;
+    }
+    .deck-cta-btn:hover {
+      background: #d4b57d;
+      transform: translateY(-2px);
+    }
+
+    /* Toast Notification */
+    .atelier-toast {
+      position: fixed;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(18, 15, 12, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(201,169,110,0.5);
+      color: #FAF7F0;
+      border-radius: 40px;
+      padding: 14px 28px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.65), 0 0 20px rgba(201,169,110,0.2);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), opacity 0.3s ease;
+    }
+    .atelier-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive for Atelier Showcase */
+    @media (max-width: 1024px) {
+      .atelier-showcase-section { padding: 90px 24px 100px; }
+      .atelier-canvas { height: 600px; border-radius: 28px; }
+      .ingredient-card { width: 120px; height: 120px; border-radius: 24px; }
+      .ingredient-card img { width: 72px; height: 72px; }
+      .atelier-hero-cup-stage { width: 310px; height: 435px; }
+      .atelier-details-deck { grid-template-columns: 1fr 1fr; gap: 24px; padding: 28px; }
+      .deck-cta-btn { grid-column: span 2; justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .atelier-showcase-section { padding: 70px 16px 80px; }
+      .atelier-canvas { height: 520px; border-radius: 24px; }
+      .atelier-topbar { top: 16px; left: 16px; right: 16px; }
+      .atelier-brand-sub { display: none; }
+      .atelier-location-pill { display: none; }
+      .ingredient-card { width: 95px; height: 95px; border-radius: 20px; }
+      .ingredient-card img { width: 56px; height: 56px; }
+      .atelier-hero-cup-stage { width: 240px; height: 340px; }
+      .atelier-cup-title { font-size: 1.85rem; top: 68%; }
+      .atelier-bottom-headline { font-size: 2.2rem; bottom: 14px; }
+      .atelier-nav-arrow { width: 38px; height: 38px; }
+      .atelier-nav-prev { left: 12px; }
+      .atelier-nav-next { right: 12px; }
+      .atelier-details-deck { grid-template-columns: 1fr; gap: 20px; padding: 20px; border-radius: 16px; }
+      .deck-cta-btn { grid-column: auto; width: 100%; justify-content: center; }
+    }
+
     /* ── MENU ── */
     .menu-section {
       background: #F5EFE5;
@@ -1404,6 +2007,7 @@
   <div class="nav-links">
     <a href="#maison">La Maison</a>
     <a href="#espaces">Les Espaces</a>
+    <a href="#atelier">L'Atelier</a>
     <a href="#carte">La Carte</a>
     <a href="#commissions">Commissions</a>
     <a href="#visit">Visit</a>
@@ -1423,6 +2027,7 @@
 <div class="mobile-drawer" id="mobileDrawer">
   <a href="#maison"      id="mlink1">La Maison</a>
   <a href="#espaces"     id="mlink2">Les Espaces</a>
+  <a href="#atelier"     id="mlink-at">L'Atelier Signature</a>
   <a href="#carte"       id="mlink3">La Carte</a>
   <a href="#commissions" id="mlink4">Private Commissions</a>
   <a href="#visit"       id="mlink5">Visit &amp; Location</a>
@@ -1449,8 +2054,8 @@
         — crafted daily for those who value provenance over haste.
       </p>
       <div class="hero-actions">
-        <a href="#carte" class="btn-solid-cream" id="heroMenuBtn">Explore La Carte</a>
-        <a href="#commissions" class="btn-outline-gold" id="heroCommBtn">Private Commissions</a>
+        <a href="#atelier" class="btn-solid-cream" id="heroAtelierBtn">Compose Your Creation</a>
+        <a href="#carte" class="btn-outline-gold" id="heroMenuBtn">Explore La Carte</a>
       </div>
     </div>
   </div>
@@ -1530,6 +2135,170 @@
     </div>
   </div>
 </section>
+
+<!-- Interactive Atelier Showcase -->
+<section class="atelier-showcase-section" id="atelier">
+  <div class="atelier-header" data-reveal>
+    <p class="atelier-eyebrow">✦ &nbsp; L'ATELIER HAUTE PÂTISSERIE · WASL SQUARE</p>
+    <h2 class="atelier-title">Composez Votre <em>Pâtisserie</em></h2>
+    <p class="atelier-subtitle">
+      Discover Tout De Sweet's signature Parisian entremets, tarts, and bespoke celebration creations freshly baked daily with Normandy AOP butter and Grand Cru Valrhona chocolate. Rotate to customize your creation.
+    </p>
+  </div>
+
+  <div class="atelier-canvas-wrapper" data-reveal data-reveal-delay="1">
+    <div class="atelier-canvas" id="atelierCanvas">
+      <!-- Top Floating Navigation Capsule -->
+      <div class="atelier-topbar">
+        <div class="atelier-brand-badge">
+          <span class="atelier-brand-logo">✦ Tout De Sweet</span>
+          <span class="atelier-brand-sub">Maison de Pâtisserie · Wasl Square</span>
+        </div>
+
+        <div class="atelier-capsule-island">
+          <button class="island-btn active" id="btnCollection" title="Collection Grid" aria-label="Collection">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="island-btn" title="Instagram" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <button class="island-btn" id="btnAudioToggle" title="Toggle Sound Chime" aria-label="Sound">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="audioIconSvg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+          <button class="island-btn bag-btn" id="headerBagBtn" title="View Order Bag" aria-label="Order Bag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span>Bag</span>
+            <span class="bag-count" id="headerBagCount">0</span>
+          </button>
+        </div>
+
+        <div class="atelier-location-pill" title="Wasl Square Atelier">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Wasl Square · Dubai</span>
+        </div>
+      </div>
+
+      <!-- Backdrop Scene (Dark luxury landscape & powdered pedestal) -->
+      <img src="images/atelier_scene_backdrop.png" alt="Tout De Sweet Artisan Pedestal" class="atelier-backdrop">
+      <div class="atelier-ambient-glow"></div>
+
+      <!-- The Curved Arc of 5 Floating Ingredient Squircle Cards -->
+      <div class="atelier-arc-container" id="arcContainer">
+        <!-- Card 0: Praline Noisette -->
+        <button class="ingredient-card" data-index="0" aria-label="Praliné Noisette">
+          <img src="images/card_pastry_praline.png" alt="Praliné Noisette Croustillant">
+        </button>
+        <!-- Card 1: Tarte aux Fraises -->
+        <button class="ingredient-card" data-index="1" aria-label="Tarte aux Fraises">
+          <img src="images/card_pastry_strawberry.png" alt="Tarte aux Fraises Sauvages">
+        </button>
+        <!-- Card 2: Pistache Sublime -->
+        <button class="ingredient-card active" data-index="2" aria-label="Pistache Sublime">
+          <img src="images/card_pastry_pistache.png" alt="Pistache Sublime d'Antan">
+        </button>
+        <!-- Card 3: Tartelette Chocolat -->
+        <button class="ingredient-card" data-index="3" aria-label="Tartelette Chocolat">
+          <img src="images/card_pastry_chocolat.png" alt="Tartelette Chocolat Grand Cru">
+        </button>
+        <!-- Card 4: Grand Gateau -->
+        <button class="ingredient-card" data-index="4" aria-label="Grand Gâteau Sur-Mesure">
+          <img src="images/card_pastry_cake.png" alt="Grand Gâteau Sur-Mesure">
+        </button>
+      </div>
+
+      <!-- Center Stage Pastry Hero Layer (standing on the pedestal in front of the cards) -->
+      <div class="atelier-hero-cup-stage" id="cupStage">
+        <img src="images/pastry_hero_praline.png" alt="Praliné Noisette Croustillant" class="atelier-cup-layer" data-cup="0">
+        <img src="images/pastry_hero_fraise.png" alt="Tarte aux Fraises Sauvages" class="atelier-cup-layer" data-cup="1">
+        <img src="images/pastry_hero_pistache.png" alt="Pistache Sublime d'Antan" class="atelier-cup-layer active" data-cup="2">
+        <img src="images/pastry_hero_chocolat.png" alt="Tartelette Chocolat Grand Cru" class="atelier-cup-layer" data-cup="3">
+        <img src="images/pastry_hero_cake.png" alt="Grand Gâteau Sur-Mesure" class="atelier-cup-layer" data-cup="4">
+
+        <!-- Active title over the pastry -->
+        <div class="atelier-cup-title" id="cupTitle">Pistache Sublime</div>
+
+        <!-- Floating Price Pill with interactive cart action at base of pastry -->
+        <button class="atelier-price-badge" id="cupPriceBadge" aria-label="Add this pastry creation to order">
+          <span class="atelier-price-num" id="cupPriceNum">AED 38</span>
+          <span class="atelier-price-cart-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" id="cartBadgeSvg"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </span>
+        </button>
+      </div>
+
+      <!-- Editorial Bottom Headline -->
+      <h3 class="atelier-bottom-headline">
+        Choose your artisan creation
+        <span>Haute Pâtisserie Française · Wasl Square</span>
+      </h3>
+
+      <!-- Navigation Arrows -->
+      <button class="atelier-nav-arrow atelier-nav-prev" id="atelierPrevBtn" aria-label="Previous Creation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="atelier-nav-arrow atelier-nav-next" id="atelierNextBtn" aria-label="Next Creation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <!-- Details and Customization Deck below Canvas -->
+    <div class="atelier-details-deck" id="atelierDeck">
+      <div class="deck-info">
+        <h4 class="deck-info-title" id="deckTitle">Pistache Sublime</h4>
+        <div class="deck-info-origin" id="deckOrigin">Sicilian Bronte Pistachios DOP · French Valrhona Opalys</div>
+        <p class="deck-info-desc" id="deckDesc">
+          A signature sculpted green velvet dome of silken pistachio namelaka with an unctuous pure pistachio praliné core, encircled with hand-roasted crushed pistachios.
+        </p>
+      </div>
+
+      <!-- Customization Option 1: Format / Size -->
+      <div class="deck-select-group">
+        <span class="deck-label">Format / Taille</span>
+        <div class="deck-pills" id="formatOptions">
+          <button class="deck-pill active" data-format="single" data-extra="0">Individuel <span class="pill-extra">+0</span></button>
+          <button class="deck-pill" data-format="duo" data-extra="36">Coffret Duo <span class="pill-extra">+36</span></button>
+          <button class="deck-pill" data-format="grand" data-extra="125">Grand Gâteau (6-8P) <span class="pill-extra">+125</span></button>
+        </div>
+      </div>
+
+      <!-- Customization Option 2: Finishing & Packaging -->
+      <div class="deck-select-group">
+        <span class="deck-label">Finition &amp; Écrin</span>
+        <div class="deck-pills" id="finishOptions">
+          <button class="deck-pill active" data-finish="box" data-extra="0">Écrin Signature <span class="pill-extra">+0</span></button>
+          <button class="deck-pill" data-finish="ribbon" data-extra="15">Ruban Soie &amp; Carte <span class="pill-extra">+15</span></button>
+          <button class="deck-pill" data-finish="plaque" data-extra="20">Plaque Message Or <span class="pill-extra">+20</span></button>
+        </div>
+      </div>
+
+      <!-- Customization Option 3: Dietary Note / Preparation -->
+      <div class="deck-select-group">
+        <span class="deck-label">Préparation</span>
+        <div class="deck-pills" id="dietOptions">
+          <button class="deck-pill active" data-diet="classic">Pur Beurre AOP</button>
+          <button class="deck-pill" data-diet="gluten">Gluten-Friendly</button>
+          <button class="deck-pill" data-diet="sugar">Moins Sucré (-30%)</button>
+        </div>
+      </div>
+
+      <!-- Optional Custom Message Input for Plaque -->
+      <div class="deck-message-container" id="plaqueMessageContainer">
+        <input type="text" class="deck-message-input" id="plaqueMessageInput" placeholder="✦ Inscription calligraphiée sur plaque de chocolat (ex: Joyeux Anniversaire Sarah)..." maxlength="60">
+      </div>
+
+      <button class="deck-cta-btn" id="deckOrderBtn">
+        <span>Add to Order</span>
+        <span id="deckOrderPrice">✦ AED 38</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Floating Toast -->
+<div class="atelier-toast" id="atelierToast" role="status" aria-live="polite">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMessage">Added to Order: Original Uji Matcha (AED 38)</span>
+</div>
 
 <!-- Menu -->
 <section class="menu-section" id="carte">
@@ -1835,6 +2604,395 @@
     });
   });
   renderMenu('viennoiserie');
+
+  // ── L'ATELIER HAUTE PÂTISSERIE INTERACTIVE SHOWCASE SCRIPT ──
+  const CREATIONS = [
+    {
+      id: 0,
+      title: "Praliné Noisette",
+      subtitle: "Valrhona Guanaja · Crunchy Piedmont Praline Base",
+      price: "AED 42",
+      basePrice: 42,
+      origin: "Valrhona 70% Dark Chocolate · Roasted Piedmont Hazelnuts",
+      desc: "A velvety dome of Grand Cru dark chocolate mousse filled with a flowing roasted hazelnut praliné heart, resting upon a delicately caramelized croustillant biscuit.",
+      tastingNotes: "Toasted Hazelnut · 70% Cacao Ganache · Crunchy Biscuit"
+    },
+    {
+      id: 1,
+      title: "Tarte aux Fraises",
+      subtitle: "French Mara des Bois Strawberries · Tahitian Vanilla Diplomat",
+      price: "AED 38",
+      basePrice: 38,
+      origin: "Mara des Bois Fresh Strawberries · Pure Normandy Butter Sablé",
+      desc: "Delicate fluted sablé pastry crust cradling velvety Tahitian vanilla bean diplomat cream, crowned with a mountain of glossy French wild strawberries and 24K gold flakes.",
+      tastingNotes: "Ripe Berry Sweetness · Fragrant Vanilla · Golden Sablé Snap"
+    },
+    {
+      id: 2,
+      title: "Pistache Sublime",
+      subtitle: "Bronte Pistachio Namelaka · Pistachio Praliné",
+      price: "AED 38",
+      basePrice: 38,
+      origin: "Sicilian Bronte Pistachios DOP · French Valrhona Opalys",
+      desc: "A signature sculpted green velvet dome of silken pistachio namelaka with an unctuous pure pistachio praliné core, encircled with hand-roasted crushed pistachios.",
+      tastingNotes: "Roasted Green Nut · Silky Namelaka · Delicate Sea Salt"
+    },
+    {
+      id: 3,
+      title: "Tartelette Chocolat Grand Cru",
+      subtitle: "70% Guanaja Ganache · Sablé Cacao & Gold Leaf",
+      price: "AED 40",
+      basePrice: 40,
+      origin: "Valrhona Guanaja Single-Origin · Fleur de Sel de Guérande",
+      desc: "A crisp dark cocoa sablé crust cradling an intense, bittersweet dark chocolate ganache, finished with a fine dusting of Dutch cacao and an artisanal chocolate crescent.",
+      tastingNotes: "Deep Bittersweet Cocoa · Guérande Sea Salt · Buttery Snap"
+    },
+    {
+      id: 4,
+      title: "Grand Gâteau Sur-Mesure",
+      subtitle: "Bespoke Celebration Entremet · Fresh Mission Figs & Gold",
+      price: "AED 165",
+      basePrice: 165,
+      origin: "Tout De Sweet Atelier · Custom Celebrations Wasl Square",
+      desc: "Our master pastry chef's bespoke celebratory creation: two sculpted tiers of Tahitian vanilla chiffon, whipped Madagascar mascarpone, ripe mission figs, and 24K edible gold leaf.",
+      tastingNotes: "Honeyed Figs · Bourbon Mascarpone · Golden Splendor"
+    }
+  ];
+
+  let atelierIndex = 2; // Default to Pistache Sublime
+  let orderCount = 0;
+  let audioContext = null;
+  let soundEnabled = true;
+
+  // Selected Customization Options
+  let currentFormat = { name: "Individuel (1P)", extra: 0 };
+  let currentFinish = { name: "Écrin Signature", extra: 0, code: "box" };
+  let currentDiet = "Pur Beurre AOP";
+
+  function getCurrentTotalPrice() {
+    const item = CREATIONS[atelierIndex];
+    let fExtra = currentFormat.extra;
+    if (item.id === 4 && fExtra > 0) {
+      fExtra = Math.max(0, fExtra - 100);
+    }
+    return item.basePrice + fExtra + currentFinish.extra;
+  }
+
+  function updatePriceDisplays() {
+    const total = getCurrentTotalPrice();
+    const priceStr = `AED ${total}`;
+    
+    const cupPriceEl = document.getElementById('cupPriceNum');
+    if (cupPriceEl) {
+      cupPriceEl.style.transform = 'scale(0.88)';
+      setTimeout(() => {
+        cupPriceEl.textContent = priceStr;
+        cupPriceEl.style.transform = 'scale(1)';
+      }, 120);
+    }
+
+    const deckPriceEl = document.getElementById('deckOrderPrice');
+    if (deckPriceEl) {
+      deckPriceEl.textContent = `✦ ${priceStr}`;
+    }
+  }
+
+  // Refined harmonic luxury chime using Web Audio API
+  function playLuxuryChime(freqMultiplier = 1) {
+    if (!soundEnabled) return;
+    try {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      const now = audioContext.currentTime;
+      const osc = audioContext.createOscillator();
+      const osc2 = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(587.33 * freqMultiplier, now); // D5
+      osc.frequency.exponentialRampToValueAtTime(880 * freqMultiplier, now + 0.15); // A5
+
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(1174.66 * freqMultiplier, now); // D6 harmonic
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.06, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
+
+      osc.connect(gain);
+      osc2.connect(gain);
+      gain.connect(audioContext.destination);
+
+      osc.start(now);
+      osc2.start(now);
+      osc.stop(now + 0.56);
+      osc2.stop(now + 0.56);
+    } catch(e) {}
+  }
+
+  function updateArcLayout() {
+    const cards = document.querySelectorAll('.ingredient-card');
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth <= 1024 && !isMobile;
+
+    const xMult = isMobile ? 0.38 : (isTablet ? 0.72 : 1.0);
+    const yMult = isMobile ? 0.55 : 1.0;
+
+    cards.forEach((card, i) => {
+      let diff = i - atelierIndex;
+      if (diff > 2) diff -= 5;
+      if (diff < -2) diff += 5;
+
+      let x = 0, y = 0, rot = 0, scale = 1, zIndex = 3, opacity = 1;
+
+      if (diff === 0) {
+        x = 0;
+        y = -12 * yMult;
+        rot = 0;
+        scale = isMobile ? 1.12 : 1.16;
+        zIndex = 5;
+        card.classList.add('active');
+      } else if (diff === -1) {
+        x = -200 * xMult;
+        y = 18 * yMult;
+        rot = -7.5;
+        scale = isMobile ? 0.90 : 0.95;
+        zIndex = 4;
+        card.classList.remove('active');
+      } else if (diff === 1) {
+        x = 200 * xMult;
+        y = 18 * yMult;
+        rot = 7.5;
+        scale = isMobile ? 0.90 : 0.95;
+        zIndex = 4;
+        card.classList.remove('active');
+      } else if (diff === -2) {
+        x = -380 * xMult;
+        y = 80 * yMult;
+        rot = -15;
+        scale = isMobile ? 0.76 : 0.85;
+        zIndex = 2;
+        card.classList.remove('active');
+      } else if (diff === 2) {
+        x = 380 * xMult;
+        y = 80 * yMult;
+        rot = 15;
+        scale = isMobile ? 0.76 : 0.85;
+        zIndex = 2;
+        card.classList.remove('active');
+      }
+
+      card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) scale(${scale})`;
+      card.style.zIndex = zIndex;
+      card.style.opacity = (Math.abs(diff) === 2 && isMobile) ? '0.35' : '1';
+    });
+  }
+
+  function setAtelierFlavor(index) {
+    if (index === atelierIndex) return;
+    atelierIndex = (index + 5) % 5;
+    const item = CREATIONS[atelierIndex];
+
+    playLuxuryChime();
+    updateArcLayout();
+
+    // Cross-fade pastry layers
+    document.querySelectorAll('.atelier-cup-layer').forEach(c => {
+      const isCur = parseInt(c.dataset.cup) === atelierIndex;
+      c.classList.toggle('active', isCur);
+    });
+
+    // Animate pastry typography overlay
+    const cupTitle = document.getElementById('cupTitle');
+    cupTitle.style.opacity = '0';
+    cupTitle.style.transform = 'translate(-50%, -50%) translateY(8px) scale(0.96)';
+    setTimeout(() => {
+      cupTitle.textContent = item.title;
+      cupTitle.style.opacity = '1';
+      cupTitle.style.transform = 'translate(-50%, -50%) translateY(0) scale(1)';
+    }, 180);
+
+    // Update details deck
+    document.getElementById('deckTitle').textContent = item.title;
+    document.getElementById('deckOrigin').textContent = item.origin;
+    document.getElementById('deckDesc').textContent = item.desc;
+    
+    // Refresh prices based on active selections
+    updatePriceDisplays();
+  }
+
+  function addToBag() {
+    orderCount++;
+    const item = CREATIONS[atelierIndex];
+    const total = getCurrentTotalPrice();
+
+    const headerCount = document.getElementById('headerBagCount');
+    headerCount.textContent = orderCount;
+    headerCount.style.transform = 'scale(1.4)';
+    setTimeout(() => headerCount.style.transform = 'scale(1)', 220);
+
+    // Get optional inscription message
+    const plaqueInput = document.getElementById('plaqueMessageInput');
+    const msgText = (currentFinish.code === 'plaque' && plaqueInput && plaqueInput.value.trim()) 
+      ? ` · «${plaqueInput.value.trim()}»` 
+      : '';
+
+    const toast = document.getElementById('atelierToast');
+    const toastMsg = document.getElementById('toastMessage');
+    toastMsg.textContent = `✦ Added to Bag: ${item.title} (${currentFormat.name} · ${currentFinish.name} · AED ${total}${msgText}) · Wasl Square`;
+    toast.classList.add('show');
+
+    playLuxuryChime(1.25);
+
+    const badge = document.getElementById('cupPriceBadge');
+    badge.style.transform = 'translateX(-50%) scale(1.15)';
+    badge.style.background = '#C9A96E';
+    setTimeout(() => {
+      badge.style.transform = 'translateX(-50%)';
+      badge.style.background = '#FAF7F0';
+    }, 280);
+
+    clearTimeout(window.__toastTimeout);
+    window.__toastTimeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+  }
+
+  // Event Listeners for Atelier Cards
+  document.querySelectorAll('.ingredient-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = parseInt(card.dataset.index);
+      setAtelierFlavor(idx);
+    });
+  });
+
+  const prevBtn = document.getElementById('atelierPrevBtn');
+  const nextBtn = document.getElementById('atelierNextBtn');
+  if (prevBtn) prevBtn.addEventListener('click', () => setAtelierFlavor(atelierIndex - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => setAtelierFlavor(atelierIndex + 1));
+
+  const cupPriceBadge = document.getElementById('cupPriceBadge');
+  if (cupPriceBadge) cupPriceBadge.addEventListener('click', addToBag);
+
+  const deckOrderBtn = document.getElementById('deckOrderBtn');
+  if (deckOrderBtn) deckOrderBtn.addEventListener('click', addToBag);
+
+  const headerBagBtn = document.getElementById('headerBagBtn');
+  if (headerBagBtn) headerBagBtn.addEventListener('click', addToBag);
+
+  // Deck Option 1: Format / Taille
+  document.querySelectorAll('#formatOptions .deck-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#formatOptions .deck-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const extra = parseInt(btn.dataset.extra || '0');
+      const text = btn.textContent.split('+')[0].trim();
+      currentFormat = { name: text, extra: extra };
+      updatePriceDisplays();
+      playLuxuryChime(0.9);
+    });
+  });
+
+  // Deck Option 2: Finishing & Packaging
+  document.querySelectorAll('#finishOptions .deck-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#finishOptions .deck-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const extra = parseInt(btn.dataset.extra || '0');
+      const text = btn.textContent.split('+')[0].trim();
+      const code = btn.dataset.finish;
+      currentFinish = { name: text, extra: extra, code: code };
+      
+      // Toggle message input container if plaque selected
+      const msgBox = document.getElementById('plaqueMessageContainer');
+      if (msgBox) {
+        if (code === 'plaque') {
+          msgBox.classList.add('show');
+          setTimeout(() => {
+            const input = document.getElementById('plaqueMessageInput');
+            if (input) input.focus();
+          }, 150);
+        } else {
+          msgBox.classList.remove('show');
+        }
+      }
+
+      updatePriceDisplays();
+      playLuxuryChime(0.95);
+    });
+  });
+
+  // Deck Option 3: Dietary Note / Preparation
+  document.querySelectorAll('#dietOptions .deck-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#dietOptions .deck-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDiet = btn.textContent.trim();
+      playLuxuryChime(1.05);
+    });
+  });
+
+  // Sound toggle button
+  const audioToggleBtn = document.getElementById('btnAudioToggle');
+  if (audioToggleBtn) {
+    audioToggleBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      audioToggleBtn.classList.toggle('active', soundEnabled);
+      const toast = document.getElementById('atelierToast');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.textContent = soundEnabled ? "✦ Sound Effects Enabled" : "✦ Sound Effects Muted";
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+      if (soundEnabled) playLuxuryChime(1.1);
+    });
+  }
+
+  // Touch & Swipe gestures for canvas
+  const canvas = document.getElementById('atelierCanvas');
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  if (canvas) {
+    canvas.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    canvas.addEventListener('touchend', e => {
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      const diffY = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          setAtelierFlavor(atelierIndex + 1); // Swipe left -> next
+        } else {
+          setAtelierFlavor(atelierIndex - 1); // Swipe right -> prev
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Keyboard navigation
+  window.addEventListener('keydown', e => {
+    const atelierEl = document.getElementById('atelier');
+    if (!atelierEl) return;
+    const rect = atelierEl.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (inView) {
+      if (e.key === 'ArrowRight') setAtelierFlavor(atelierIndex + 1);
+      if (e.key === 'ArrowLeft') setAtelierFlavor(atelierIndex - 1);
+    }
+  });
+
+  // Responsive resize
+  window.addEventListener('resize', updateArcLayout);
+
+  // Initialize layout & pricing
+  updatePriceDisplays();
+  updateArcLayout();
 </script>
 </body>
 </html>
